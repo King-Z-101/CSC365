@@ -1,1 +1,11 @@
 Lab 1
+lastName and firstName are the composite key
+ToDo:
+You must implement the following search queries:
+• Given a student’s last name, find the student’s grade, classroom and teacher (if there is more than one student with the same last name, find this information for all students);
+• Given a student’s last name, find the bus route the student takes (if there is more than one student with the same last name, find this information for all matching students);
+• Given a teacher, find the list of students in his/her class;
+• Given a bus route, find all students who take it;
+• Find all students at a specified grade level.
+• For a given grade level find the average GPA of students in that grade.
+• In a given grade level find the student with the highest (lowest) GPA.
