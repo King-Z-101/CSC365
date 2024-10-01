@@ -149,30 +149,32 @@ B: 51
 // expected output: Invalid Bus Route
 Bus: 72
 
-// TC-18, formatting
+// TC-18
 // Tests Requirments R3, R9
 // long form command name, existing grade, highest GPA
 // expected output: SWEDLUND, SHARRI, 3.24, FAFARD, ROCIO
 , 55
 Grade: 3 High
 
-// TC-19, formatting
+// TC-19
 // Tests Requirments R3, R9
 // long form command name, existing grade, H GPA
 // expected output: SWEDLUND, SHARRI, 3.24, FAFARD, ROCIO
 , 55
 Grade: 3 H
 
-// TC-20, invalid??
+// TC-20
 // Tests Requirments R3, R9
 // long form command name, existing grade, Low GPA
-// expected output: 
+// expected output: CIGANEK, MANIE, 2.79, FAFARD, ROCIO
+, 53
 Grade: 3 Low
 
-// TC-21, invalid??
+// TC-21
 // Tests Requirments R3, R9
 // long form command name, existing grade, L GPA
-// expected output: 
+// expected output: CIGANEK, MANIE, 2.79, FAFARD, ROCIO
+, 53
 Grade: 3 L
 
 // TC-22
@@ -193,20 +195,18 @@ Average: 3
 // expected output: 4: 2.95
 A: 4
 
-// TC-25, 0 grade?, skips 5
+// TC-25
 // Tests Requirments R3, R11
 // long form command name, list num of students per grade category, ascending
 // expected output: 
-//0:  0
 //1:  2
 //2:  13
 //3:  9
 //4:  15
-//5:  0
 //6:  21
 Info
 
-// TC-26, 0 grade?, skips 5
+// TC-26
 // Tests Requirments R3, R11
 // short form command name, list num of students per grade category, ascending
 // expected output: 
