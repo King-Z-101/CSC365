@@ -20,4 +20,9 @@ S[tudent]: <lastname> [B[us]]
 
 test script shall be represented as a single text file,
 
+If the students.txt is not
+available, or has the wrong format (ie. incorrect number of columns) - exit the program. If an unrecognized search instruction is provided, go back to the prompt.
+
+
+
 3, 4, 5, 6, 6, 4, 5, 6, 7
