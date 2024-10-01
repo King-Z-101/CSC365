@@ -197,10 +197,12 @@ A: 4
 // Tests Requirments R3, R11
 // long form command name, list num of students per grade category, ascending
 // expected output: 
+//0:  0
 //1:  2
 //2:  13
 //3:  9
 //4:  15
+//5:  0
 //6:  21
 Info
 
