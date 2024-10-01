@@ -1,0 +1,216 @@
+// CSC 365
+// Lab 1-a test suite
+
+// TC-1
+// Tests Requirements R3, R4
+// short form command name, existing student
+// expected output: HAVIR,BOBBIE,2,108,HAMER,GAVIN
+S: HAVIR
+
+// TC-2
+// Tests Requirements R3, R4
+// short form command name, non-existing student
+// expected output: No Record(s) Found
+S: NEMO
+
+// TC-3
+// Tests Requirments R3, R12
+// quit command
+// expected output: program terminates with message "Exiting Program"
+Q
+
+// TC-4
+// Tests Requirments R3, R5
+// short form command name, existing student, with short form bus search
+// expected output: ELHADDAD, SHANTE, 52
+S: ELHADDAD B
+
+// TC-5
+// Tests Requirments R3, R5
+// short form command name, non-existing student, with short form bus search
+// expected output: No Record(s) Found
+S: NEMO B
+
+// TC-6
+// Tests Requirments R3, R5
+// long form command name, existing student, with long form bus search
+// expected output: ELHADDAD, SHANTE, 52
+Student: ELHADDAD Bus
+
+// TC-7
+// Tests Requirments R3, R4
+// long form command name, existing student
+// expected output: ELHADDAD, SHANTE, 3, 107, FAFARD, ROCIO
+Student: ELHADDAD
+
+// TC-8
+// Tests Requirments R3, R6
+// short form command name, existing teacher
+// expected output: 
+//CORKER, CARTER
+//IMMERMAN, DEVIN
+//RAPOSE, ALONZO
+//OGAS, ERVIN
+//MASSART, ELDON
+//BEX, TAMESHA
+T: Hantz
+
+// TC-9
+// Tests Requirments R3, R6
+// long form command name, existing teacher
+// expected output: 
+//CORKER, CARTER
+//IMMERMAN, DEVIN
+//RAPOSE, ALONZO
+//OGAS, ERVIN
+//MASSART, ELDON
+//BEX, TAMESHA
+Teacher: Hantz
+
+// TC-10
+// Tests Requirments R3, R6
+// long form command name, non-existing teacher
+// expected output: No Record(s) Found
+Teacher: Nemo
+
+// TC-11
+// Tests Requirments R3, R6
+// short form command name, non-existing teacher
+// expected output: No Record(s) Found
+T: Nemo
+
+// TC-12
+// Tests Requirments R3, R7
+// long form command name, existing grade
+// expected output: 
+//COOKUS, XUAN
+//ELHADDAD, SHANTE
+//BRODERSEN, HYE
+//SWEDLUND, SHARRI
+//CIGANEK, MANIE
+//COVINGTON, TOMAS
+//EARLY, TORY
+//LINHART, LELA
+//THEUNISSEN, GRACE
+Grade: 3
+
+// TC-13
+// Tests Requirments R3, R7
+// short form command name, existing grade
+// expected output: 
+//COOKUS, XUAN
+//ELHADDAD, SHANTE
+//BRODERSEN, HYE
+//SWEDLUND, SHARRI
+//CIGANEK, MANIE
+//COVINGTON, TOMAS
+//EARLY, TORY
+//LINHART, LELA
+//THEUNISSEN, GRACE
+G: 3
+
+// TC-14
+// Tests Requirments R3, R6
+// short form command name, invalid grade
+// expected output: Invalid Grade
+G: 0
+
+// TC-15
+// Tests Requirments R3, R8
+// long form command name, existing bus route
+// expected output: 
+//WOOLERY, NOLAN, 2, 104
+//STERBACK, PETER, 6, 111
+//LIBRANDI, TODD, 2, 108
+//RAPOSE, ALONZO, 4, 105
+//COVINGTON, TOMAS, 3, 107
+//MULLINGS, LEIGHANN, 2, 108
+//DURAND, CARLEE, 4, 101
+//FRIEDSTROM, REED, 6, 106
+Bus: 51
+
+// TC-16
+// Tests Requirments R3, R8
+// short form command name, existing bus route
+// expected output: 
+//WOOLERY, NOLAN, 2, 104
+//STERBACK, PETER, 6, 111
+//LIBRANDI, TODD, 2, 108
+//RAPOSE, ALONZO, 4, 105
+//COVINGTON, TOMAS, 3, 107
+//MULLINGS, LEIGHANN, 2, 108
+//DURAND, CARLEE, 4, 101
+//FRIEDSTROM, REED, 6, 106
+B: 51
+
+// TC-17
+// Tests Requirments R3, R8
+// long form command name, non-existing bus route
+// expected output: Invalid Bus Route
+Bus: 72
+
+// TC-18, formatting
+// Tests Requirments R3, R9
+// long form command name, existing grade, highest GPA
+// expected output: SWEDLUND, SHARRI, 3.24, FAFARD, ROCIO
+, 55
+Grade: 3 High
+
+// TC-19, formatting
+// Tests Requirments R3, R9
+// long form command name, existing grade, H GPA
+// expected output: SWEDLUND, SHARRI, 3.24, FAFARD, ROCIO
+, 55
+Grade: 3 H
+
+// TC-20, invalid??
+// Tests Requirments R3, R9
+// long form command name, existing grade, Low GPA
+// expected output: 
+Grade: 3 Low
+
+// TC-21, invalid??
+// Tests Requirments R3, R9
+// long form command name, existing grade, L GPA
+// expected output: 
+Grade: 3 L
+
+// TC-22
+// Tests Requirments R3, R9
+// long form command name, non-existing grade, Low GPA
+// expected output: Invalid Grade
+Grade: 17 Low
+
+// TC-23
+// Tests Requirments R3, R10
+// long form command name, existing grade, average
+// expected output: 3: 3.05
+Average: 3
+
+// TC-24
+// Tests Requirments R3, R10
+// short form command name, existing grade, average
+// expected output: 4: 2.95
+A: 4
+
+// TC-25, 0 grade?, skips 5
+// Tests Requirments R3, R11
+// long form command name, list num of students per grade category, ascending
+// expected output: 
+//1:  2
+//2:  13
+//3:  9
+//4:  15
+//6:  21
+Info
+
+// TC-26, 0 grade?, skips 5
+// Tests Requirments R3, R11
+// short form command name, list num of students per grade category, ascending
+// expected output: 
+//1:  2
+//2:  13
+//3:  9
+//4:  15
+//6:  21
+I

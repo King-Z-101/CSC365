@@ -159,35 +159,26 @@ def parse_command(command):
 
         if((command[0] == 'S:') | (command[0] == 'Student:')):
                 if(len(command) == 3):
-                    print("print the last name, first name and the bus route the student takes")
                     stundent_bus_finder(record, command[1])
                 else:
-                    print("print the last name, first name, grade and classroom assignment for each student found and the name of their teacher (last and first name)")
                     student_finder(record, command[1])
 
         elif((command[0] == 'T:') | (command[0] == 'Teacher:')): 
-            print("print the last and the first name of the student")
             teacher_finder(record, command[1])
         elif((command[0] == 'G:') | (command[0] == 'Grade:')): 
             if(len(command) == 3):
-                if((command[2] == 'H:') | (command[2] == 'High')):
-                    print("print info of student with highest GPA")
+                if((command[2] == 'H') | (command[2] == 'High')):
                     grade_max_student_finder(record, command[1])
-                elif((command[2] == 'L:') | (command[2] == 'Low')):
-                    print("print info of student with lowest GPA")
+                elif((command[2] == 'L') | (command[2] == 'Low')):
                     grade_min_student_finder(record, command[1])
                     
             else:
-                print("print the name (last and first) of the student")
                 grade_student_finder(record, command[1])
         elif((command[0] == 'B:') | (command[0] == 'Bus:')): 
-            print("print the name of the student (last and first) and their grade and classroom")
             bus_student_finder(record, command[1])
         elif((command[0] == 'A:') | (command[0] == 'Average:')): 
-            print("print the grade level (the number provided in command) and the average GPA score rounded to two decimal places")
             grade_level_average_finder(record, command[1]) 
         elif((command[0] == 'I') | (command[0] == 'Info')): 
-            print("print the number of students in each grade in the format <Grade>: <Number of Students> sorted in ascending order by grade") 
             info_finder(record)
         else:
             print(error_MSG_INVALID_COMMAND)   
@@ -196,7 +187,6 @@ def parse_command(command):
         sys.exit("Exiting Program: students.txt not found")
 
 def main():
-    print("Hello, World!")
     while True:
         user_input = input("Enter a command: ")
     #split the input into a list
