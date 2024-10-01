@@ -79,7 +79,7 @@ def grade_max_student_finder(record, grade):
 
 def grade_min_student_finder(record, grade):
     count = 0
-    min_gpa = 0
+    min_gpa = 10
     #first pass finds the min_gpa
     for line in record:
         line = line.split(",")
@@ -91,6 +91,7 @@ def grade_min_student_finder(record, grade):
         if((line[2] == grade) & (float(line[5]) == min_gpa)):
             print(line[0] + ", "  + line[1] + ", "  + line[5] + ", "  + line[6] + ", "  + line[7] + ", "  + line[4])
             count += 1
+    print(min_gpa)
     if(count == 0):
         print(error_MSG_INVALID_Grade)
     return
