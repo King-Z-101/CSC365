@@ -14,6 +14,16 @@ StLastName, StFirstName, Grade, Classroom, Bus, GPA, TLastName, TFirstName
 0           1            2      3          4    5    6          7
 
 
+part b:
+
+list.txt
+StLastName, StFirstName, Grade, Classroom, Bus, GPA
+0           1            2      3          4    5  
+
+teachers.txt
+TLastName, TFirstName, Classroom
+0          1            2
+
 '''
 import sys
 
@@ -23,6 +33,7 @@ error_MSG_INVALID_COMMAND_FORMAT = "Invalid Command Format"
 error_MSG_NO_RECORD = "No Record(s) Found"
 error_MSG_INVALID_Grade = "Invalid Grade"
 error_MSG_INVALID_Bus = "Invalid Bus Route"
+error_MSG_INVALID_Classroom = "Invalid Classroom"
 
 #Note: grace will be added to passed names of students and teachers (case insensitive)
 def stundent_bus_finder(record, last_name):
@@ -36,22 +47,58 @@ def stundent_bus_finder(record, last_name):
         print(error_MSG_NO_RECORD)
     return
 
-def student_finder(record, last_name):
+# NR 2
+def classroom_teacher_finder(teachers, classroom):
     count = 0
-    for line in record:
+    for line in teachers:
         line = line.split(",")
-        if(line[0] == last_name.upper()):
-            print(line[0] + ", "  + line[1] + ", "  + line[2] + ", "  + line[3] + ", "  + line[6] + ", "  + line[7])
+        if(line[2] == classroom):
+            print(line[0] + ", "  + line[1] + ", "  + line[2])
             count += 1
     if(count == 0):
+        print(error_MSG_INVALID_Classroom)
+    return
+
+def student_finder(record, teachers, last_name):
+    count = 0
+    teacher_dict = {}
+    
+    for line in teachers:
+        line = line.split(",")
+        classroom = line[2]
+        teacher_dict[classroom] = (line[0], line[1])
+    
+    for line in record:
+        line = line.split(",")
+        if line[0].upper() == last_name.upper():
+            teacher_info = teacher_dict.get(classroom, ("Unknown", "Unknown"))
+            teacher_last, teacher_first = teacher_info
+            
+            print(line[0], ", ", line[1], ", ", line[2], ", ", line[3], ", ", line[4], ", ", line[5].strip(), ", ", f"{teacher_last}, {teacher_first}")
+            count += 1
+    
+    if count == 0:
         print(error_MSG_NO_RECORD)
     return
 
-def teacher_finder(record, teacher_name):
+#TODO: implement this for NR1
+def classroom_student_finder(record, classroom):
     count = 0
     for line in record:
         line = line.split(",")
-        if(line[6] == teacher_name.upper()):
+        if(line[3] == classroom):
+            print(line[0] + ", "  + line[1] + ", "  + line[2])
+            count += 1
+    if(count == 0):
+        print(error_MSG_INVALID_Classroom)
+    return
+
+def teacher_finder(teachers, teacher_name):
+    count = 0
+    for line in teachers:
+        line = line.split(",")
+        if(line[0] == teacher_name.upper()):
+            #TODO: find student based on teacher
             print(line[0] + ", "  + line[1])
             count += 1
     if(count == 0):
@@ -155,17 +202,19 @@ def parse_command(command):
     #check if student.txt file exists
     try:
         #open students.txt file and pass to all helper functions
-        with open("students.txt") as f:
+        with open("list.txt") as f:
             record = f.readlines()
+        with open("teachers.txt") as t:
+            teachers = t.readlines()
 
         if((command[0] == 'S:') | (command[0] == 'Student:')):
                 if(len(command) == 3):
                     stundent_bus_finder(record, command[1])
                 else:
-                    student_finder(record, command[1])
+                    student_finder(record, teachers, command[1])
 
         elif((command[0] == 'T:') | (command[0] == 'Teacher:')): 
-            teacher_finder(record, command[1])
+            teacher_finder(teachers, command[1])
         elif((command[0] == 'G:') | (command[0] == 'Grade:')): 
             if(len(command) == 3):
                 if((command[2] == 'H') | (command[2] == 'High')):
