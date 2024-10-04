@@ -285,7 +285,7 @@ def parse_command(command):
             grade_level_average_finder(record, command[1]) 
         elif((command[0] == 'I') | (command[0] == 'Info')): 
             info_finder(record)
-        elif((command[0] == 'E') | (command[0] == 'Enrollment')): 
+        elif((command[0] == 'E') | (command[0] == 'Enrollment')):  #NR4*
             enrollment_finder(record)
 
         else:

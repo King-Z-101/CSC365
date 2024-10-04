@@ -1,1 +1,8 @@
 To run the program, type "py schoolsearch.py" into the terminal
+
+New Part B Commands:
+
+NR1: C[lass]: <number> [S]
+NR2: C[lass]: <number> [T]
+NR3: G[rade]: <number> [T]
+NR4: E[nrollment]
