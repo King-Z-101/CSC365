@@ -47,6 +47,18 @@ def stundent_bus_finder(record, last_name):
         print(error_MSG_NO_RECORD)
     return
 
+#NR1
+def classroom_student_finder(record, classroom):
+    count = 0
+    for line in record:
+        line = line.split(",")
+        if(line[3] == classroom):
+            print(line[0] + ", "  + line[1] + ", "  + line[2])
+            count += 1
+    if(count == 0):
+        print(error_MSG_INVALID_Classroom)
+    return
+
 # NR 2
 def classroom_teacher_finder(teachers, classroom):
     count = 0
@@ -58,6 +70,39 @@ def classroom_teacher_finder(teachers, classroom):
     if(count == 0):
         print(error_MSG_INVALID_Classroom)
     return
+
+#NR3
+def grade_teacher_finder(teachers, students, grade):
+    #go through student records and find students at the given grade level, append the classroom number to a list
+    grade_classes = []
+    for student in students:
+        student = student.split(",")
+        if student[2] == grade:
+            grade_classes.append(student[3])
+    #go through teacher records, check if their class is in the list and print out their info 
+    for teacher in teachers:
+        teacher = teacher.split(",")
+        if teacher[2] in grade_classes:
+            print(teachers[0], teachers[1])
+
+#NR4
+def enrollment_finder(students):
+    class_freq = {}
+    #map the classrooms to the number of students in each class
+    for student in students:
+        student = student.split(",")
+        if(student[3] in class_freq):
+            class_freq[student[3]] += 1
+        else:
+            class_freq[student[3]] = 1
+    #sort the dictionary by class number
+    classList = list(class_freq.keys())
+    classList.sort()
+    #get the value (number of students) for each class
+    for c in classList:
+        print(c + ": ", class_freq[c])
+    return
+
 
 def student_finder(record, teachers, last_name):
     count = 0
@@ -81,25 +126,23 @@ def student_finder(record, teachers, last_name):
         print(error_MSG_NO_RECORD)
     return
 
-#TODO: implement this for NR1
-def classroom_student_finder(record, classroom):
+#TODO: find student based on teacher
+def teacher_finder(record, teachers, teacher_name):
     count = 0
-    for line in record:
-        line = line.split(",")
-        if(line[3] == classroom):
-            print(line[0] + ", "  + line[1] + ", "  + line[2])
-            count += 1
-    if(count == 0):
-        print(error_MSG_INVALID_Classroom)
-    return
-
-def teacher_finder(teachers, teacher_name):
-    count = 0
+    classroom = None
+    
     for line in teachers:
         line = line.split(",")
-        if(line[0] == teacher_name.upper()):
-            #TODO: find student based on teacher
-            print(line[0] + ", "  + line[1])
+        if line[0].upper() == teacher_name.upper():
+            classroom = line[2]
+
+    if classroom == None:
+        print(error_MSG_INVALID_Classroom)
+        return
+    for line in record:
+        line = line.split(",")
+        if line[3].strip() == classroom.strip():
+            print(line[0], ", ", line[1])
             count += 1
     if(count == 0):
         print(error_MSG_NO_RECORD)
@@ -207,21 +250,33 @@ def parse_command(command):
         with open("teachers.txt") as t:
             teachers = t.readlines()
 
-        if((command[0] == 'S:') | (command[0] == 'Student:')):
+        if((command[0] == 'C:') | (command[0] == 'Class:') and len(command) == 3):
+                #check 3rd command to see if they want teacher or student info from the class
+                if((command[2] == 'S')):
+                    classroom_student_finder(record, command[1]) #NR1*
+                if((command[2] == 'T')):
+                    classroom_teacher_finder(teachers, command[1]) #NR2*
+                else:
+                    print(error_MSG_INVALID_COMMAND_FORMAT)
+
+
+        elif((command[0] == 'S:') | (command[0] == 'Student:')):
                 if(len(command) == 3):
                     stundent_bus_finder(record, command[1])
                 else:
                     student_finder(record, teachers, command[1])
 
         elif((command[0] == 'T:') | (command[0] == 'Teacher:')): 
-            teacher_finder(teachers, command[1])
+            teacher_finder(record, teachers, command[1])
         elif((command[0] == 'G:') | (command[0] == 'Grade:')): 
             if(len(command) == 3):
                 if((command[2] == 'H') | (command[2] == 'High')):
                     grade_max_student_finder(record, command[1])
                 elif((command[2] == 'L') | (command[2] == 'Low')):
                     grade_min_student_finder(record, command[1])
-                    
+                elif(command[2] == 'T'): #NR3*
+                    grade_teacher_finder(teachers, record, command[1])
+                      
             else:
                 grade_student_finder(record, command[1])
         elif((command[0] == 'B:') | (command[0] == 'Bus:')): 
@@ -230,6 +285,9 @@ def parse_command(command):
             grade_level_average_finder(record, command[1]) 
         elif((command[0] == 'I') | (command[0] == 'Info')): 
             info_finder(record)
+        elif((command[0] == 'E') | (command[0] == 'Enrollment')): 
+            enrollment_finder(record)
+
         else:
             print(error_MSG_INVALID_COMMAND)   
         return
