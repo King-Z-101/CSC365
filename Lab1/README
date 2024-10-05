@@ -3,6 +3,16 @@ To run the program, type "py schoolsearch.py" into the terminal
 New Part B Commands:
 
 NR1: C[lass]: <number> [S]
+-> given a classroom number, list all the students assigned to it
 NR2: C[lass]: <number> [T]
+-> given a classroom number, list all the teachers teaching in it
 NR3: G[rade]: <number> [T]
+-> given a grade, find all the teachers who teach it
 NR4: E[nrollment]
+-> lists classroom numbers with total number of students in each
+NR5: Data G
+-> lists average GPAs of all grade levels for data analysis
+NR5: Data T
+-> lists average GPAs of all students taught by each teacher for data analysis
+NR5: Data B
+-> lists average GPAs of all bus routes for data analysis
